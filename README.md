@@ -2,7 +2,6 @@ Bootstrap
 =========
 
 The pre-requisites to bootstrap a development environment are:
-
 - Perform a 7-pass erase on the drive.
 - Sign up for an Apple developer account.
 - Install the latest version of OS X.
@@ -19,3 +18,23 @@ The Bootstrap process:
   - `sudo mv knife.rb /etc/chef`
 - Run Chef client.
   - `sudo chef-client -c /etc/chef/client.rb`
+
+The configuration process:
+- Switch your environment to Development `sudo knife node edit <name>.local`.
+
+  ```
+    {
+      "name": "<name>.local",
+      "chef_environment": "Development",
+      "normal": {
+        "tags": [
+
+        ]
+      },
+      "run_list": [
+
+      ]
+    }
+  ```
+  
+- Bootstrap the Homebrew directory `sudo chown -R `whoami`:staff /usr/local`.
