@@ -9,15 +9,22 @@ The pre-requisites to bootstrap a development environment are:
 
 The Bootstrap process:
 - Install Chef `sudo true && curl -L http://www.opscode.com/chef/install.sh | sudo bash`
+  - `chown -R <name>:staff /opt/chef`
 - Download the validation.pem, client.rb and knife.rb configuration files.
 - Add node_name `<name>.local` in the client.rb and knife.rb configuration files.
-- Configure Chef client.
-  - `sudo mkdir /etc/chef`
-  - `sudo mv validation.pem /etc/chef`
-  - `sudo mv client.rb /etc/chef`
-  - `sudo mv knife.rb /etc/chef`
+- Configure Chef client. `cd /etc`
+  - `mkdir chef`
+  - `chown -R <name>:staff chef`
+  - `mv validation.pem chef`
+  - `mv client.rb chef`
+  - `sudo mkdir /var/chef`
+  - `chown -R <name>:staff /var/chef`
 - Run Chef client.
-  - `sudo chef-client -c /etc/chef/client.rb`
+  - `chef-client`
+- Configure knife. `cd`
+  - `mkdir .chef`
+  - `mv knife.rb .chef`
+  - `knife`
 
 The configuration process:
 - Switch your environment to Development `sudo knife node edit <name>.local`.
